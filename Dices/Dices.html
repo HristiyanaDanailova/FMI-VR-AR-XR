@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Dices</title>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<script src="three.min.js"></script>
+		<script src="physi.js"></script>
+		<script src="vax.js"></script>
+	</head>
+	
+	<body>
+		<script>
+			vaxInit(); 
+
+			//lightning
+			renderer.shadowMap.enabled = true;
+			light.shadow.mapSize.width = 1024*4;
+			light.shadow.mapSize.height = 1024*4;
+			light.castShadow = true;
+			
+			//camera
+            camera.position.set(0,60,90);
+            camera.lookAt(new THREE.Vector3(0,0,0));
+
+			scene.background = new THREE.Color( '#CFAEA7' );
+
+			//green base
+			let geometryTable = new THREE.BoxGeometry(220,3,180);
+			let materialTable = Physijs.createMaterial(new THREE.MeshLambertMaterial({color:'#92C88B'}));
+			let table = new Physijs.BoxMesh(geometryTable,materialTable,0);
+			table.position.set(0,-16,0);
+			scene.add(table);
+			
+			//box
+            let geometryBox = new THREE.BoxGeometry(90,3,90);
+            let materialBox = Physijs.createMaterial(new THREE.MeshPhongMaterial({color:'#704D45'}));
+            let box = new Physijs.BoxMesh(geometryBox,materialBox,0);
+            box.position.set( 0, -15, 0 );
+			box.receiveShadow = true;
+            scene.add(box);
+			
+			//walls of the box
+
+			//front and back wall
+            let geometrySideFB = new THREE.BoxGeometry(90,30,2);
+            let side = new Physijs.BoxMesh(geometrySideFB,materialBox,0);
+            side.position.set(0,-15,45);
+            scene.add(side);
+            let side2 = new Physijs.BoxMesh(geometrySideFB,materialBox,0);
+            side2.position.set(0,-15,-45);
+            scene.add(side2);
+
+			//wide walls
+            let geometrySideLR = new THREE.BoxGeometry(2,30,92);
+            let side3 = new Physijs.BoxMesh(geometrySideLR,materialBox,0);
+            side3.position.set(45,-15,0);
+			scene.add(side3);
+            let side4 = new Physijs.BoxMesh(geometrySideLR,materialBox,0);
+            side4.position.set(-45,-15,0);
+            scene.add(side4);
+
+			//geometry and material of the dices
+            let geometryDice = new THREE.BoxGeometry(10,10,10);
+            let materialDice = Physijs.createMaterial(new THREE.MeshLambertMaterial({color:'white'}));
+
+			
+			//geometry and material of the dots
+			let geometryDot = new THREE.CircleGeometry(1);
+			let materialDot = new THREE.MeshLambertMaterial({color:'black'});
+
+			//function that creates a dice
+		    function makeDice(){
+
+				let dice = new Physijs.BoxMesh(geometryDice,materialDice,1);
+
+//1 - side			
+				let dot = new THREE.Mesh(geometryDot,materialDot);
+				dot.position.set(0,0,5.05);
+				dice.add(dot);
+
+
+//3 - side
+				let dot2 = new THREE.Mesh(geometryDot,materialDot);
+				dot2.position.set(0,5.05,-0.25);
+				dot2.rotation.set(11,0,0)
+				dice.add(dot2);
+
+				let dot3 = new THREE.Mesh(geometryDot,materialDot);
+				dot3.position.set(2.75,5.05,2.75);
+				dot3.rotation.set(11,0,0)
+				dice.add(dot3);
+				
+				let dot4 = new THREE.Mesh(geometryDot,materialDot);
+				dot4.position.set(-2.75,5.05,-2.75);
+				dot4.rotation.set(11,0,0)
+				dice.add(dot4);
+
+//4 - side
+				let dot5 = new THREE.Mesh(geometryDot,materialDot);
+				dot5.position.set(2.75,2.75,-5.05);
+				dot5.rotation.set(0,3.1,0);
+				dice.add(dot5);
+
+				let dot6 = new THREE.Mesh(geometryDot,materialDot);
+				dot6.position.set(2.75,-2.75,-5.05);
+				dot6.rotation.set(0,3.1,0);
+				dice.add(dot6);
+
+			    let dot7 =new THREE.Mesh(geometryDot,materialDot);
+				dot7.position.set(-2.75,-2.75,-5.05);
+				dot7.rotation.set(0,3.1,0);
+				dice.add(dot7);
+
+				let dot8 = new THREE.Mesh(geometryDot,materialDot);
+				dot8.position.set(-2.75,2.75,-5.05);
+				dot8.rotation.set(0,3.1,0);
+				dice.add(dot8);
+
+//2 - side
+				let dot9 = new THREE.Mesh(geometryDot,materialDot);
+				dot9.position.set(2.75,-5.05,-2.75);
+				dot9.rotation.set(1.6,0,0);
+				dice.add(dot9);
+
+				let dot10 = new THREE.Mesh(geometryDot,materialDot);
+				dot10.position.set(-2.75,-5.05,2.75);
+				dot10.rotation.set(1.6,0,0);
+				dice.add(dot10);
+
+
+//5 - side
+				let dot11 = new THREE.Mesh(geometryDot,materialDot);
+				dot11.position.set(5.05,2.75,2.75);
+				dot11.rotation.set(0,1.6,0);
+				dice.add(dot11);
+
+				let dot12 = new THREE.Mesh(geometryDot,materialDot);
+				dot12.position.set(5.05,-2.75,2.75);
+				dot12.rotation.set(0,1.6,0);
+				dice.add(dot12);
+
+				let dot13 = new THREE.Mesh(geometryDot,materialDot);
+				dot13.position.set(5.05,2.75,-2.75);
+				dot13.rotation.set(0,1.6,0);
+				dice.add(dot13);
+
+				let dot14 = new THREE.Mesh(geometryDot,materialDot);
+				dot14.position.set(5.05,-2.75,-2.75);
+				dot14.rotation.set(0,1.6,0);
+				dice.add(dot14);
+
+				let dot15 =new THREE.Mesh(geometryDot,materialDot);
+				dot15.position.set(5.05,0,0);
+				dot15.rotation.set(0,1.6,0);
+				dice.add(dot15);
+
+//6 - side
+				let dot16 = new THREE.Mesh(geometryDot,materialDot);
+				dot16.position.set(-5.05,2.75,2.75);
+				dot16.rotation.set(0,4.7,0);
+				dice.add(dot16);
+
+				let dot17 = new THREE.Mesh(geometryDot,materialDot);
+				dot17.position.set(-5.05,-2.75,2.75);
+				dot17.rotation.set(0,4.7,0);
+				dice.add(dot17);
+
+				let dot18 = new THREE.Mesh(geometryDot,materialDot);
+				dot18.position.set(-5.05,-2.75,-2.75);
+				dot18.rotation.set(0,4.7,0);
+				dice.add(dot18);
+
+				let dot19 = new THREE.Mesh(geometryDot,materialDot);
+				dot19.position.set(-5.05,2.75,-2.75);
+				dot19.rotation.set(0,4.7,0);
+				dice.add(dot19);
+
+				let dot20 = new THREE.Mesh(geometryDot,materialDot);
+				dot20.position.set(-5.05,0,-2.75);
+				dot20.rotation.set(0,4.7,0);
+				dice.add(dot20);
+
+				let dot21 = new THREE.Mesh(geometryDot,materialDot);
+				dot21.position.set(-5.05,0,2.75);
+				dot21.rotation.set(0,4.7,0);
+				dice.add(dot21);
+
+				return dice;
+			}
+			//creates 2 dices and sets the linear and angular velocities of the fall
+			let dice = makeDice();
+			dice.position.set(10,60,0);
+			dice.castShadow = true;
+			scene.add(dice);
+
+			dice.setLinearVelocity(new THREE.Vector3(THREE.MathUtils.randFloat(0, 7), THREE.MathUtils.randFloat(0, 10), THREE.MathUtils.randFloat(-5, 10)));
+			dice.setAngularVelocity(new THREE.Vector3(THREE.MathUtils.randFloat(0, 8), THREE.MathUtils.randFloat(-2, 8), THREE.MathUtils.randFloat(-2, 8)));
+			
+			let dice2 = makeDice();
+			dice2.position.set(-10,60,0);
+			dice2.castShadow = true;
+			scene.add(dice2);
+
+			dice2.setLinearVelocity(new THREE.Vector3(THREE.MathUtils.randFloat(0, 7), THREE.MathUtils.randFloat(0, 10), THREE.MathUtils.randFloat(-10, 10)));
+			dice2.setAngularVelocity(new THREE.Vector3(THREE.MathUtils.randFloat(0, 8), THREE.MathUtils.randFloat(-2, 8), THREE.MathUtils.randFloat(-2, 8)));
+			
+			function animate()
+			{
+					scene.simulate(1/5);
+					
+			}
+		</script>
+	</body>
+</html>

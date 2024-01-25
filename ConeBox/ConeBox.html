@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>HW3</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="three.min.js"></script>
+    <script src="StereoEffect.js"></script>
+    <script src="vax.js"></script>
+</head>
+<body>
+    <script>
+    function getRandom(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    function degToRad(deg){
+        let pi = Math.PI;
+        return deg * (pi/180);
+    }
+
+        vaxInitParallax();
+        //box
+        let geometryBox = new THREE.BoxGeometry(50,50,50);
+        let materialBox = new THREE.MeshLambertMaterial({color:'lightblue',side: THREE.DoubleSide});
+        let box = new THREE.Mesh(geometryBox,materialBox);
+        camera.position.set(0,0,0);
+        camera.lookAt( new THREE.Vector3(0,10,25) );
+        light.position.set(0,0,0);
+        scene.add(box);
+        
+       //creates and positions 100 cones on every side of the box
+        let coneGeometry = new THREE.ConeGeometry(1,5);
+       for(let i = 0; i < 700;i++){
+        let coneMaterial = new THREE.MeshLambertMaterial({color:'blue'});
+        let cone = new THREE.Mesh(coneGeometry,coneMaterial);
+            if(i >= 0 && i < 100){
+                cone.position.set(24,getRandom(0, 25),getRandom(-25, 25)  );
+            }else if(i >= 100 && i < 200){
+                cone.position.set(24,getRandom(-25, 25),getRandom(-25, 25)  );
+            }else if(i >= 200 & i < 300){
+                cone.position.set(-24,getRandom(-25, 25),getRandom(-25, 25)  );
+            }else if(i >= 300 & i <400 ){
+                cone.position.set(getRandom(-25, 25) ,getRandom(-25, 25),24 ); 
+            }else if(i >= 400 & i < 500){
+                cone.position.set(getRandom(-25, 25) ,getRandom(-25, 25),-24 );
+            }else if(i >= 500 & i< 600){
+                cone.position.set(getRandom(-25, 25) ,-24,getRandom(-25, 25) );
+            }else{
+                cone.position.set(getRandom(-25, 25) ,25,getRandom(-25, 25) );
+            }
+        cone.material.color.setRGB(getRandom(0,1),getRandom(0,1),getRandom(0,1)); 
+        scene.add(cone);
+       }
+       //works with phone in landscape left mode
+       window.addEventListener('deviceorientation',deviceOrientation,true);
+       function deviceOrientation(event){
+            let alpha = event.alpha;
+            let beta = event.beta;
+            let gamma = event.gamma;
+            camera.rotation.set(degToRad(gamma), -degToRad(alpha),degToRad(beta), 'YZX');
+       }
+    </script>
+</body>
+</html>
