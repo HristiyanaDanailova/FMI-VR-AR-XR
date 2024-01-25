@@ -1,135 +1,138 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="stats.min.js"></script>
-        <script src="three.min.js"></script>
-        <script src="vax.js"></script>
-    </head>
-    <body>
-        <script>
-            // Category B - Ladybug
-            // There is movement in the wings and in the antennas
-            vaxInit();
-           
-            camera.lookAt(new THREE.Vector3(0,-20,0));
-            let geometryGrass = new THREE.BoxGeometry(170,5,170);
-            let materialGrass = new THREE.MeshLambertMaterial({color:'#30bf43'});
-            let grass = new THREE.Mesh(geometryGrass,materialGrass);
-            grass.position.set(0,-45,-20); 
-            scene.add(grass);
 
-            let ladyBug = new THREE.Group();
+<head>
+    <meta charset="utf-8">
+    <script src="stats.min.js"></script>
+    <script src="three.min.js"></script>
+    <script src="vax.js"></script>
+</head>
 
-            let geometryBody = new THREE.BoxGeometry(50,40,40);
-            let materialBody = new THREE.MeshLambertMaterial({color:'#272829'});
-            let body = new THREE.Mesh(geometryBody,materialBody);
-            body.position.set(0,-25,-20); 
-            ladyBug.add(body);
+<body>
+    <script>
+        // Category B - Ladybug
+        // There is movement in the wings and in the antennas
+        vaxInit();
+
+        camera.lookAt(new THREE.Vector3(0, -20, 0));
+        let geometryGrass = new THREE.BoxGeometry(170, 5, 170);
+        let materialGrass = new THREE.MeshLambertMaterial({ color: '#30bf43' });
+        let grass = new THREE.Mesh(geometryGrass, materialGrass);
+        grass.position.set(0, -45, -20);
+        scene.add(grass);
+
+        let ladyBug = new THREE.Group();
+
+        let geometryBody = new THREE.BoxGeometry(50, 40, 40);
+        let materialBody = new THREE.MeshLambertMaterial({ color: '#272829' });
+        let body = new THREE.Mesh(geometryBody, materialBody);
+        body.position.set(0, -25, -20);
+        ladyBug.add(body);
 
 
-            let geometryWing = new THREE.BoxGeometry(25,3,40);
-            let materialWing = new THREE.MeshLambertMaterial({color:'red'});
-            let wing = new THREE.Mesh(geometryWing,materialWing);
-            wing.position.set(15,-3.5,-20);
-            ladyBug.add(wing);
+        let geometryWing = new THREE.BoxGeometry(25, 3, 40);
+        let materialWing = new THREE.MeshLambertMaterial({ color: 'red' });
+        let wing = new THREE.Mesh(geometryWing, materialWing);
+        wing.position.set(15, -3.5, -20);
+        ladyBug.add(wing);
 
-            let geometryDot = new THREE.BoxGeometry(5,5,5);
-            let materialDot = new THREE.MeshLambertMaterial({color:'black'});
-            let dot = new THREE.Mesh(geometryDot,materialDot);
-            dot.position.set(7,0,10);
-            wing.add(dot);
+        let geometryDot = new THREE.BoxGeometry(5, 5, 5);
+        let materialDot = new THREE.MeshLambertMaterial({ color: 'black' });
+        let dot = new THREE.Mesh(geometryDot, materialDot);
+        dot.position.set(7, 0, 10);
+        wing.add(dot);
 
-            let dot2 = dot.clone();
-            dot2.position.set(-7,0,10);
-            wing.add(dot2);
+        let dot2 = dot.clone();
+        dot2.position.set(-7, 0, 10);
+        wing.add(dot2);
 
-            let dot3 = dot.clone();
-            dot3.position.set(7,0,-10);
-            wing.add(dot3);
+        let dot3 = dot.clone();
+        dot3.position.set(7, 0, -10);
+        wing.add(dot3);
 
-            let dot4 = dot.clone();
-            dot4.position.set(-7,0,-10);
-            wing.add(dot4);
+        let dot4 = dot.clone();
+        dot4.position.set(-7, 0, -10);
+        wing.add(dot4);
 
-            let dot5 = dot.clone();
-            dot5.position.set(0,0,0);
-            wing.add(dot5);
+        let dot5 = dot.clone();
+        dot5.position.set(0, 0, 0);
+        wing.add(dot5);
 
-            let wing2 = wing.clone();
-            wing.position.set(-15,-3.5,-20);
-            ladyBug.add(wing2);
+        let wing2 = wing.clone();
+        wing.position.set(-15, -3.5, -20);
+        ladyBug.add(wing2);
 
-            let geometryHead = new THREE.BoxGeometry(30,25,30);
-            let head = new THREE.Mesh(geometryHead,materialBody);
-            head.position.set(0,-25,0);
-            ladyBug.add(head);
+        let geometryHead = new THREE.BoxGeometry(30, 25, 30);
+        let head = new THREE.Mesh(geometryHead, materialBody);
+        head.position.set(0, -25, 0);
+        ladyBug.add(head);
 
-            let geometryEye = new THREE.BoxGeometry(7,7,7);
-            let materialEye = new THREE.MeshLambertMaterial({color:'white'});
-            let eye = new THREE.Mesh(geometryEye,materialEye);
-            eye.position.set(7,6,12);
+        let geometryEye = new THREE.BoxGeometry(7, 7, 7);
+        let materialEye = new THREE.MeshLambertMaterial({ color: 'white' });
+        let eye = new THREE.Mesh(geometryEye, materialEye);
+        eye.position.set(7, 6, 12);
 
-            let geometryEyeInside = new THREE.BoxGeometry(5,5,5);
-            let materialEyeInside = new THREE.MeshLambertMaterial({color:'black'});
-            let eyeInside = new THREE.Mesh(geometryEyeInside,materialEyeInside);
-            eyeInside.position.set(0,0,2);
-            eye.add(eyeInside);
-            head.add(eye);
+        let geometryEyeInside = new THREE.BoxGeometry(5, 5, 5);
+        let materialEyeInside = new THREE.MeshLambertMaterial({ color: 'black' });
+        let eyeInside = new THREE.Mesh(geometryEyeInside, materialEyeInside);
+        eyeInside.position.set(0, 0, 2);
+        eye.add(eyeInside);
+        head.add(eye);
 
-            let eye2 = eye.clone();
-            eye2.position.set(-7,6,12);
-            head.add(eye2);
+        let eye2 = eye.clone();
+        eye2.position.set(-7, 6, 12);
+        head.add(eye2);
 
-            let geometrySmile = new THREE.CircleGeometry(4,30,0,3.11);
-            let materialSmile = new THREE.MeshLambertMaterial({color:'red'});
-            let smile = new THREE.Mesh(geometrySmile,materialSmile);
-            smile.position.set(0,-4,15.1);
-            smile.rotation.set(0,0, Math.PI);
-            head.add(smile);
+        let geometrySmile = new THREE.CircleGeometry(4, 30, 0, 3.11);
+        let materialSmile = new THREE.MeshLambertMaterial({ color: 'red' });
+        let smile = new THREE.Mesh(geometrySmile, materialSmile);
+        smile.position.set(0, -4, 15.1);
+        smile.rotation.set(0, 0, Math.PI);
+        head.add(smile);
 
-            let geometryCheeks = new THREE.SphereGeometry(3);
-            let materialCheeks = new THREE.MeshLambertMaterial({color:'#f5a9dc'});
-            let cheek = new THREE.Mesh(geometryCheeks,materialCheeks);
-            cheek.position.set(-11,-4,14);
-            head.add(cheek);
+        let geometryCheeks = new THREE.SphereGeometry(3);
+        let materialCheeks = new THREE.MeshLambertMaterial({ color: '#f5a9dc' });
+        let cheek = new THREE.Mesh(geometryCheeks, materialCheeks);
+        cheek.position.set(-11, -4, 14);
+        head.add(cheek);
 
-            let cheek2 = cheek.clone();
-            cheek2.position.set(11,-4,14);
-            head.add(cheek2);
+        let cheek2 = cheek.clone();
+        cheek2.position.set(11, -4, 14);
+        head.add(cheek2);
 
-            let geometryAntenna = new THREE.BoxGeometry(2,15,2);
-            let materialAntenna = new THREE.MeshLambertMaterial({color:'black'});
-            let antenna = new THREE.Mesh(geometryAntenna,materialAntenna);
-            antenna.position.set(7,17,8);
+        let geometryAntenna = new THREE.BoxGeometry(2, 15, 2);
+        let materialAntenna = new THREE.MeshLambertMaterial({ color: 'black' });
+        let antenna = new THREE.Mesh(geometryAntenna, materialAntenna);
+        antenna.position.set(7, 17, 8);
 
-            let geometryAntennaThing = new THREE.BoxGeometry(4,4,4);
-            let materialAntennaThing = new THREE.MeshLambertMaterial({color:'black'});
-            let antennaThing = new THREE.Mesh(geometryAntennaThing,materialAntennaThing);
-            antennaThing.position.set(0,8,0);
-            antenna.add(antennaThing);
-            head.add(antenna);
+        let geometryAntennaThing = new THREE.BoxGeometry(4, 4, 4);
+        let materialAntennaThing = new THREE.MeshLambertMaterial({ color: 'black' });
+        let antennaThing = new THREE.Mesh(geometryAntennaThing, materialAntennaThing);
+        antennaThing.position.set(0, 8, 0);
+        antenna.add(antennaThing);
+        head.add(antenna);
 
-            let antenna2 = antenna.clone();
-            antenna2.position.set(-7,17,8);
-            let antennaThing2 = antennaThing.clone();
-            antennaThing2.position.set(0,8,0);
-            antenna2.add(antennaThing2);
-            head.add(antenna2);
+        let antenna2 = antenna.clone();
+        antenna2.position.set(-7, 17, 8);
+        let antennaThing2 = antennaThing.clone();
+        antennaThing2.position.set(0, 8, 0);
+        antenna2.add(antennaThing2);
+        head.add(antenna2);
 
-            scene.add(ladyBug);
-            
-            function animate(t){
+        scene.add(ladyBug);
 
-                wing.rotation.y = Math.max(0,1/3*Math.cos(t*2.5));
-                wing2.rotation.y = Math.min(0,-1/3*Math.cos(t*2.5))
-            
-                antenna.rotation.set(1/3*Math.sin(t*2.5),0,0);
-                antenna2.rotation.set(-1/3*Math.sin(t*2.5),0,0);
-            
-                scene.rotation.set(Math.max(1/2*Math.sin(t/3),0),t/4,0);
-            
-            }
-        </script>
-    </body>
+        function animate(t) {
+
+            wing.rotation.y = Math.max(0, 1 / 3 * Math.cos(t * 2.5));
+            wing2.rotation.y = Math.min(0, -1 / 3 * Math.cos(t * 2.5))
+
+            antenna.rotation.set(1 / 3 * Math.sin(t * 2.5), 0, 0);
+            antenna2.rotation.set(-1 / 3 * Math.sin(t * 2.5), 0, 0);
+
+            scene.rotation.set(Math.max(1 / 2 * Math.sin(t / 3), 0), t / 4, 0);
+
+        }
+    </script>
+</body>
+
 </html>
